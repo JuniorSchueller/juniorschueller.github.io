@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Bom Gosto",
+        "hint": "Escutar todas as músicas da playlist",
+        "script": "if(pageId==='main'){const listenedSongsOld=JSON.parse(sessionStorage.getItem('listenedSongs'))||[];const listenedSongs=[...new Set(listenedSongsOld)];const allPlaylistSongs=playerData.playlists[0].musics;musicEnded=function(){listenedSongs.push(playerData.playlists[0].musics[playerData.playListMusicIndex].name);sessionStorage.setItem('listenedSongs',JSON.stringify(listenedSongs));if(listenedSongs.length===allPlaylistSongs.length){sessionStorage.removeItem('listenedSongs');addAchievement('Bom Gosto');return};forwardMusicPlayer()}};",
+        "icon": "fa-solid fa-music"
+    },
+    {
+        "name": "Explorando Atalhos",
+        "hint": "Clicar em todos os ícones de atalhos",
+        "script": "if(pageId==='main'){const shortcutLinks=document.querySelectorAll('.section.shortcuts > button[data-redir]');shortcutLinks.forEach(shortcutLink=>{shortcutLink.addEventListener('click',()=>{const shortcutsClickedOld=JSON.parse(sessionStorage.getItem('shortcutsClicked'))||[];const shortcutsClicked=[...new Set(shortcutsClickedOld)];if(!shortcutsClicked.includes(shortcutLink.getAttribute('data-redir'))){shortcutsClicked.push(shortcutLink.getAttribute('data-redir'));sessionStorage.setItem('shortcutsClicked',JSON.stringify(shortcutsClicked));if(shortcutsClicked.length===shortcutLinks.length){addAchievement('Explorando Atalhos');sessionStorage.removeItem('shortcutsClicked')}}})})};",
+        "icon": "fa-solid fa-link"
+    },
+    {
+        "name": "Visitando o Passado",
+        "hint": "Visitar a versão antiga do site",
+        "script": "if(pageId==='main'){const visitOldVersionButton=document.querySelector('.old-version');visitOldVersionButton.addEventListener('click',()=>{addAchievement('Visitando o Passado')})}",
+        "icon": "fa-solid fa-magnifying-glass"
+    },
+    {
+        "name": "Como Funciona?",
+        "hint": "Abrir o modo desenvolvedor",
+        "script": "if(pageId==='main'||pageId==='achievements'){function detectDevTools(){const threshold=170;const isDevToolsOpen=window.outerHeight-window.innerHeight>threshold||window.outerWidth-window.innerWidth>threshold;if(isDevToolsOpen){addAchievement('Como Funciona?')}};window.addEventListener('resize',detectDevTools)};",
+        "icon": "fa-solid fa-code"
+    },
+    {
+        "name": "Boa Tentativa",
+        "hint": "Tentar usar um código e falhar",
+        "script": "if(pageId==='main'){function failTryInterceptor(){const originalFetch=window.fetch;window.fetch=async function(...args){const response=await originalFetch.apply(this,args);try{const url=new URL(args[0]);if(response.status===200&&url.hostname==='jrsch-codes.glitch.me'){const clonedResponse=response.clone();const jsonResponse=await clonedResponse.json();if(jsonResponse.valid===!1){addAchievement('Boa Tentativa')}}}catch{console.log('ACHandler: Error trying to add fetch interceptor.')};return response}};failTryInterceptor()};",
+        "icon": "fa-solid fa-x"
+    },
+    {
+        "name": "Ótima Tentativa",
+        "hint": "Tentar usar um código e ter sucesso",
+        "script": "if(pageId==='main'){function niceTryInterceptor(){const originalFetch=window.fetch;window.fetch=async function(...args){const response=await originalFetch.apply(this,args);try{const url=new URL(args[0]);if(response.status===200&&url.hostname==='jrsch-codes.glitch.me'){const clonedResponse=response.clone();const jsonResponse=await clonedResponse.json();if(jsonResponse.valid===1){addAchievement('Ótima Tentativa')}}}catch{console.log('ACHandler: Error trying to add fetch interceptor.')};return response}};niceTryInterceptor()};",
+        "icon": "fa-solid fa-check"
+    },
+    {
+        "name": "Esperto Demais",
+        "hint": "Apertar F5 na tela de carregamento",
+        "script": "if(pageId==='main'){const loading=document.querySelector('.loading');document.addEventListener('keydown',(event)=>{if(event.key==='F5'){if(loading&&getComputedStyle(loading,null).opacity!=='0'){addAchievement('Esperto Demais')}}})};",
+        "icon": "fa-solid fa-brain"
+    },
+    {
+        "name": "Colecionador de Conquistas",
+        "hint": "Conseguir desbloquear todas as conquistas",
+        "script": "if(pageId==='main'||pageId==='achievements'){if(userAchievements.length===achievements.length-1){function sortAlphabetically(array){if(Array.isArray(array)){return array.slice().sort((a,b)=>a.localeCompare(b))}};Array.prototype.remove=function(item){const index=this.indexOf(item);if(index>-1){this.splice(index,1)}};const userAchievementsAlphabetical=sortAlphabetically(userAchievements);const achievementsAlphabetical=sortAlphabetically(achievements);achievementsAlphabetical.remove('Colecionador de Conquistas');if(JSON.stringify(userAchievementsAlphabetical)===JSON.stringify(achievementsAlphabetical)){addAchievement('Colecionador de Conquistas')}}};",
+        "icon": "fa-solid fa-border-all"
+    }
+]

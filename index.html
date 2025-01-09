@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Junior Schueller</title>
+    <link rel="shortcut icon" href="./assets/images/site/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="./assets/styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <input type="hidden" id="pageId" value="main">
+    
+    <div class="loading">
+        <h1>Aguarde</h1>
+        <img src="./assets/images/site/loading.gif" alt="Uma imagem animada de um círculo rodando">
+        <p style="display: none;">Pressione Qualquer Tecla</p>
+    </div>
+
+    <div class="content" style="display: none;">
+        <div class="me">
+            <img src="https://images-ext-1.discordapp.net/external/oPV-bKsgS4xaDJGu3TXRttxOpyW8qau7Un3FCwphT_U/%3Fsize%3D2048/https/cdn.discordapp.com/avatars/452563077683216395/d33031c22fb5cb2012ae85dd8435d452.png?format=webp">
+            <h1>Junior Schueller</h1>
+            <p>Enjoy the most craziest things in life</p>
+            <div class="section shortcuts">
+                <button data-redir="https://github.com/JuniorSchueller"><i class="fa-brands fa-github"></i></button>
+                <button data-redir="https://youtube.com/@juniorschueller"><i class="fa-brands fa-youtube"></i></button>
+                <button data-redir="https://x.com/jr_schueller"><i class="fa-brands fa-twitter"></i></button>
+                <button data-redir="https://instagram.com/juniorschueller"><i class="fa-brands fa-instagram"></i></button>
+                <button data-redir="https://discord.com/users/452563077683216395"><i class="fa-brands fa-discord"></i></button>
+                <button data-redir="unavailable"><img src="./assets/images/icons/pd.png" alt="Ícone branco da Platform Destroyer"></button>        
+            </div>
+            <div class="section" id="knowledges">
+                <div class="section-name">Conhecimentos</div>
+                <div class="section-content"></div>
+            </div>
+            <div class="section" id="tools">
+                <div class="section-name">Ferramentas</div>
+                <div class="section-content"></div>
+            </div>
+            <div class="section" id="links">
+                <div class="section-name">Links</div>
+                <div class="section-content"></div>
+            </div>
+            <br><hr><br>
+            <div class="old-version">
+                Ir para o site antigo
+            </div>
+        </div>
+        <br>
+        <div class="you">
+            <img style="cursor: pointer;" src="./assets/images/site/you.png">
+            <h1 style="cursor: pointer;">Você</h1>
+            <p>Bem... o que posso dizer? essa aqui é <span id="switch" style="cursor: pointer;">sua</span> área.</p>
+            <div class="section" id="achievements">
+                <div class="section-name">Conquistas (<span id="total-achievements-did">0</span>/<span id="total-achievements"></span>)</div>
+                <div class="section-content"></div>
+                <a href="/achievements.html">Lista de conquistas</a>
+            </div>
+            <div class="section" id="code">
+                <div class="section-name">Código</div>
+                <p>Códigos executam scripts na página, fazendo personalizações temporárias e mais coisas legais.</p>
+                <div class="code-area">
+                    <div class="code-area-interactive">
+                        <input type="text" placeholder="Código...">
+                        <input type="button" value="OK">
+                    </div>
+                    <div class="code-area-static">
+                        <p class="error"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="player">
+            <p></p>
+            <hr>
+            <div class="song">
+                <p class="song-name"></p>
+                <p><span class="song-duration"></span> - <span class="song-duration-remaining"></span></p>
+                <div class="song-sameline">
+                    <button class="song-backward"><i class="fa-solid fa-backward"></i></button>
+                    <button class="song-control"><i class="fa-solid fa-pause"></i></button>
+                    <button class="song-forward"><i class="fa-solid fa-forward"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/scripts/main.js"></script>
+    <script src="./assets/scripts/achievement-handler.js"></script>
+</body>
+</html>
