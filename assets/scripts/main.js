@@ -220,7 +220,7 @@ function addRedirectorsToShortcuts() {
     const shortcuts = document.querySelectorAll('.section.shortcuts > button');
     shortcuts.forEach(shortcut => {
         shortcut.addEventListener('click', () => {
-            if (shortcut.getAttribute('data-redir').toLowerCase() === 'unavailable') return window.alert('Indisponível no momento!');
+            if (shortcut.getAttribute('data-redir').toLowerCase() === 'pd-card') return window.open('https://pdapi.vercel.app/card?id=452563077683216395', 'Platform Destroyer', 'width=452,height=512');
             window.open(shortcut.getAttribute('data-redir'));
         });
     });
@@ -306,7 +306,7 @@ function addListenersToUserAreaElements() {
         if (codeInput.value.trim() === '') {
             setError('Você deve inserir um código.');
         } else {
-            const codeCheckResponse = await fetch('https://jrsch-codes.glitch.me/verificarCodigo', {
+            const codeCheckResponse = await fetch('https://sch-api.vercel.app/api/github/code', {
                 'method': 'POST',
                 'body': JSON.stringify({
                     'code': codeInput.value
@@ -315,7 +315,7 @@ function addListenersToUserAreaElements() {
             });
             const codeCheck = await codeCheckResponse.json();
 
-            if (codeCheck.valid === false) {
+            if (codeCheck.valid === false || codeCheckResponse.status !== 200) {
                 setError('O código é inválido.');
             } else {
                 setError('');

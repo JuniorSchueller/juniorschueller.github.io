@@ -12,18 +12,19 @@ function addAchievement(achievementName) {
 document.addEventListener('DOMContentLoaded', async () => {
     const userAchievementsOld = JSON.parse(localStorage.getItem('achievements')) || [];
     const userAchievements = [...new Set(userAchievementsOld)];
+
     const achievementsResponse = await fetch('./assets/data/achievements.json');
     const achievementsObjects = await achievementsResponse.json();
-    const achievements = [];
 
-    achievementsObjects.forEach(achievementObject => {
-        achievements.push(achievementObject.name);
-    });
-
-    achievements.forEach(achievement => {
+    // Agora percorre direto os objetos
+    achievementsObjects.forEach(achievement => {
         if (!userAchievements.includes(achievement.name)) {
             setTimeout(() => {
-                eval(achievement.script);
+                try {
+                    eval(achievement.script);
+                } catch (err) {
+                    console.error(`Erro ao rodar script da conquista "${achievement.name}":`, err);
+                }
             }, 1000);
         }
     });
