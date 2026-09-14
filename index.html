@@ -80,7 +80,7 @@
           <div class="stat-divider"></div>
           <div class="stat"><strong data-count="7">0</strong><span>projetos<br> entregues</span></div>
           <div class="stat-divider"></div>
-          <div class="stat"><strong data-count="3">0</strong><span>certificações</span></div>
+          <div class="stat"><strong data-count="5">0</strong><span>certificações</span></div>
         </div>
       </div>
     </div>
@@ -266,27 +266,44 @@
       <div class="section-header">
         <span class="kicker">Formação</span>
         <h2>Cursos</h2>
-        <p>Escola Virtual — Fundação Bradesco</p>
+        <p>Certificações e cursos concluídos.</p>
       </div>
       <div class="courses-grid">
-        <article class="course">
+        <a href="https://drive.google.com/file/d/14kdrW9U4wQ2OCmH5_cRCvKu3GCIPpATN/view?usp=sharing" target="_blank" class="course">
+          <div class="course-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <h3>Prompting Responsável: Maximizar a IA no seu negócio</h3>
+          <p>Santander Open Academy</p>
+          <span class="course-date">Concluído em 14/09/2026</span>
+          <i class="fa-solid fa-arrow-up-right-from-square course-link"></i>
+        </a>
+        <a href="https://drive.google.com/file/d/1yFBoo31kdUymEmqrliupkS3OE2N230G0/view?usp=sharing" target="_blank" class="course">
+          <div class="course-icon"><i class="fa-solid fa-table"></i></div>
+          <h3>Excel na Prática</h3>
+          <p>Fundação Bradesco</p>
+          <span class="course-date">Concluído em 14/09/2026</span>
+          <i class="fa-solid fa-arrow-up-right-from-square course-link"></i>
+        </a>
+        <a href="https://drive.google.com/file/d/1_yJpITa539tAQ6jRC_5W9xJuQfAISz1E/view?usp=sharing" target="_blank" class="course">
           <div class="course-icon"><i class="fa-brands fa-python"></i></div>
           <h3>Criando um Projeto com Interface Gráfica em Python</h3>
-          <p>Escola Virtual Bradesco</p>
+          <p>Fundação Bradesco</p>
           <span class="course-date">Concluído em 20/04/2026</span>
-        </article>
-        <article class="course">
+          <i class="fa-solid fa-arrow-up-right-from-square course-link"></i>
+        </a>
+        <a href="https://drive.google.com/file/d/1GkArqAkaPPdG86FnEun5iKDMxhm3xCY5/view?usp=sharing" target="_blank" class="course">
           <div class="course-icon"><i class="fa-solid fa-shield-halved"></i></div>
           <h3>Segurança em Tecnologia da Informação</h3>
-          <p>Escola Virtual Bradesco</p>
+          <p>Fundação Bradesco</p>
           <span class="course-date">Concluído em 15/02/2026</span>
-        </article>
-        <article class="course">
+          <i class="fa-solid fa-arrow-up-right-from-square course-link"></i>
+        </a>
+        <a href="https://drive.google.com/file/d/1NyeLYZEvuxYVCWl2C6rrKmEt3HQMm7AH/view?usp=sharing" target="_blank" class="course">
           <div class="course-icon"><i class="fa-solid fa-microchip"></i></div>
           <h3>Fundamentos de TI: Hardware e Software</h3>
-          <p>Escola Virtual Bradesco</p>
+          <p>Fundação Bradesco</p>
           <span class="course-date">Concluído em 27/01/2026</span>
-        </article>
+          <i class="fa-solid fa-arrow-up-right-from-square course-link"></i>
+        </a>
       </div>
     </div>
   </section>
@@ -321,15 +338,32 @@
           </div>
         </div>
 
-        <form class="contact-form" id="contactForm" novalidate>
-          <div class="form-row">
-            <label>Nome<input type="text" name="name" placeholder="Seu nome" required></label>
-            <label>E-mail<input type="email" name="email" placeholder="seu@email.com" required></label>
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/myeyrney" method="POST">
+          <div class="form-success" data-fs-success hidden>
+            <i class="fa-solid fa-check-circle"></i> Mensagem enviada com sucesso! Retornarei em breve.
           </div>
-          <label>Assunto<input type="text" name="subject" placeholder="Sobre o que quer falar?" required></label>
-          <label>Mensagem<textarea name="message" rows="5" placeholder="Conte sobre seu projeto..." required></textarea></label>
-          <button type="submit" class="btn btn-primary btn-block">Enviar mensagem <i class="fa-solid fa-arrow-right"></i></button>
-          <div id="formFeedback" class="form-feedback" aria-live="polite"></div>
+          <div class="form-row">
+            <label>Nome
+              <input type="text" name="name" placeholder="Seu nome" required data-fs-field>
+              <span data-fs-error="name"></span>
+            </label>
+            <label>E-mail
+              <input type="email" name="email" placeholder="seu@email.com" required data-fs-field>
+              <span data-fs-error="email"></span>
+            </label>
+          </div>
+          <label>Assunto
+            <input type="text" name="subject" placeholder="Sobre o que quer falar?" required data-fs-field>
+            <span data-fs-error="subject"></span>
+          </label>
+          <label>Mensagem
+            <textarea name="message" rows="5" placeholder="Conte sobre seu projeto..." required data-fs-field></textarea>
+            <span data-fs-error="message"></span>
+          </label>
+          <div data-fs-error="form" class="form-feedback error" style="display:none"></div>
+          <button type="submit" class="btn btn-primary btn-block" data-fs-submit-btn>
+            Enviar mensagem <i class="fa-solid fa-arrow-right"></i>
+          </button>
         </form>
       </div>
     </div>
@@ -350,6 +384,11 @@
   </footer>
 
   <div id="toast" class="toast"></div>
+  <script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#contactForm', formId: 'myeyrney' });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
   <script src="assets/js/script.js"></script>
 </body>
 </html>

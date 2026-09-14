@@ -120,44 +120,16 @@ discordCard?.addEventListener('keydown', e=>{
   if(e.key==='Enter' || e.key===' '){ e.preventDefault(); discordCard.click(); }
 });
 
-// CV button - generate placeholder toast if no file
-$('#cvBtn')?.addEventListener('click', e=>{
-  // if file doesn't exist, the browser will 404; show toast anyway for UX
-  setTimeout(()=>{
-    // don't prevent default; let download attempt happen
-  },0);
-});
-
-// Contact form
+// Contact form — validate name/subject, let Formspree AJAX handle the rest
 const form = $('#contactForm');
-const feedback = $('#formFeedback');
-form?.addEventListener('submit', e=>{
-  e.preventDefault();
+form?.addEventListener('submit', e => {
   const data = new FormData(form);
   const name = data.get('name')?.trim();
-  const email = data.get('email')?.trim();
   const subject = data.get('subject')?.trim();
-  const message = data.get('message')?.trim();
-
-  if(!name || !email || !subject || !message){
-    feedback.textContent = 'Preencha todos os campos.';
-    feedback.className = 'form-feedback show error';
-    return;
+  if (!name || !subject) {
+    e.preventDefault();
+    showToast('Preencha todos os campos.');
   }
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-    feedback.textContent = 'Informe um e-mail válido.';
-    feedback.className = 'form-feedback show error';
-    return;
-  }
-  // Build mailto as fallback (no backend)
-  const body = `Nome: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${encodeURIComponent(message)}`;
-  const mailto = `mailto:junior@schuellertech.com.br?subject=${encodeURIComponent(subject)}&body=${body}`;
-  window.location.href = mailto;
-
-  feedback.textContent = 'Abrindo seu e-mail para enviar a mensagem — obrigado pelo contato! ✨';
-  feedback.className = 'form-feedback show success';
-  form.reset();
-  showToast('Redirecionando para o e-mail ✉️');
 });
 
 // Smooth anchor offset already handled by scroll-padding-top
